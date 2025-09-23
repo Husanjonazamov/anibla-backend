@@ -31,6 +31,9 @@ from ..serializers import ChangePasswordSerializer
 from .. import models
 
 
+
+
+
 @extend_schema(tags=["register"])
 class RegisterView(BaseViewSetMixin, GenericViewSet, UserService):
     throttle_classes = [throttling.UserRateThrottle]
@@ -51,14 +54,24 @@ class RegisterView(BaseViewSetMixin, GenericViewSet, UserService):
     def register(self, request):
         ser = self.get_serializer(data=request.data)
         ser.is_valid(raise_exception=True)
-        data = ser.data
+        data = ser.validated_data
         phone = data.get("phone")
-        # Create pending user
-        self.create_user(phone, data.get("first_name"), data.get("last_name"), data.get("password"))
-        self.send_confirmation(phone)  # Send confirmation code for sms eskiz.uz
+        self.create_user(
+            phone=phone,
+            username=data.get("username"),
+            first_name=data.get("first_name"),
+            last_name=data.get("last_name"),
+            tg_id=data.get("tg_id"),
+            age=data.get("age"),
+            gender=data.get("gender"),
+            info=data.get("info"),
+            avatar=data.get("avatar"),
+            role=data.get("role"),
+            password=data.get("password"),
+        )
         return Response(
-            {"detail": _("Sms %(phone)s raqamiga yuborildi") % {"phone": phone}},
-            status=status.HTTP_202_ACCEPTED,
+            {"detail": "Foydalanuvchi yaratildi"},
+            status=status.HTTP_201_CREATED,
         )
 
     @extend_schema(summary="Auth confirm.", description="Auth confirm user.")

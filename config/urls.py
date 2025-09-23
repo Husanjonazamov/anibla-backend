@@ -21,6 +21,8 @@ def home(request):
 urlpatterns = [
     path("health/", home),
     path("", include("core.apps.accounts.urls")),
+    path("api/v2/", include("core.apps.api.urls")),
+    
 ]
 
 

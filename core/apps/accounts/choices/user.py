@@ -4,9 +4,17 @@ from django.utils.translation import gettext_lazy as _
 
 class RoleChoice(models.TextChoices):
     """
-    User Role Choice
+    Foydalanuvchi rollari
     """
+    MANAGER = "manager", _("Manager")
+    DIRECTOR = "director", _("Director")    
+    PRODUCER = "producer", _("Rejisyor")  
+    ACTOR = "actor", _("Aktyor")
 
-    SUPERUSER = "superuser", _("Superuser")
-    ADMIN = "admin", _("Admin")
-    USER = "user", _("User")
+
+class GenderChoice(models.TextChoices):
+    MALE = "male", _("Erkak")
+    FEMALE = "FEMALE", _("Ayol")
+    
+    
+    

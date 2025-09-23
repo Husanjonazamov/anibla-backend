@@ -9,25 +9,49 @@ class LoginSerializer(serializers.Serializer):
     password = serializers.CharField(max_length=255)
 
 
+
 class RegisterSerializer(serializers.ModelSerializer):
     phone = serializers.CharField(max_length=255)
+    username = serializers.CharField(max_length=255)
 
     def validate_phone(self, value):
-        user = get_user_model().objects.filter(phone=value, validated_at__isnull=False)
+        user = get_user_model().objects.filter(
+            phone=value, validated_at__isnull=False
+        )
         if user.exists():
-            raise exceptions.ValidationError(_("Phone number already registered."), code="unique")
+            raise exceptions.ValidationError(
+                _("Phone number already registered."), code="unique"
+            )
         return value
 
     class Meta:
         model = get_user_model()
-        fields = ["first_name", "last_name", "phone", "password"]
+        fields = [
+            "phone",
+            "username",
+            "first_name",
+            "last_name",
+            "tg_id",
+            "age",
+            "gender",
+            "info",
+            "avatar",
+            "role",
+            "password",
+        ]
         extra_kwargs = {
-            "first_name": {
-                "required": True,
-            },
-            "last_name": {"required": True},
+            "phone": {"required": True},
+            "username": {"required": True},
+            "first_name": {"required": False, "allow_blank": True},
+            "last_name": {"required": False, "allow_blank": True},
+            "tg_id": {"required": False},
+            "age": {"required": False},
+            "gender": {"required": False},
+            "info": {"required": False, "allow_blank": True},
+            "avatar": {"required": False},
+            "role": {"required": False},
+            "password": {"required": False, "write_only": True, "allow_blank": True},
         }
-
 
 class ConfirmSerializer(serializers.Serializer):
     code = serializers.CharField(max_length=OTP_SIZE, min_length=OTP_SIZE)
