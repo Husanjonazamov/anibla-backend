@@ -4,11 +4,14 @@ from django_core.models import AbstractBaseModel
 
 
 class CalendareventModel(AbstractBaseModel):
-
-    name = models.CharField(verbose_name=_("name"), max_length=255)
+    user = models.ForeignKey("accounts.User", on_delete=models.CASCADE)
+    title = models.CharField(max_length=300, blank=True, null=True)
+    description = models.TextField()
+    date = models.DateField()
+    created_by = models.ForeignKey("accounts.User", on_delete=models.SET_NULL, null=True, related_name="created_events")
 
     def __str__(self):
-        return str(self.pk)
+        return str(self.title)
 
     @classmethod
     def _create_fake(self):
