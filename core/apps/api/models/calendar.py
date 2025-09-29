@@ -4,14 +4,14 @@ from django_core.models import AbstractBaseModel
 
 
 class CalendareventModel(AbstractBaseModel):
-    user = models.ForeignKey("accounts.User", on_delete=models.CASCADE)
-    title = models.CharField(max_length=300, blank=True, null=True)
-    description = models.TextField()
-    date = models.DateField()
-    created_by = models.ForeignKey("accounts.User", on_delete=models.SET_NULL, null=True, related_name="created_events")
+    anime = models.ForeignKey("api.AnimeModel", on_delete=models.CASCADE)
+    director = models.ForeignKey("accounts.DirectorModel", on_delete=models.CASCADE)
+    actors = models.ManyToManyField("accounts.ActorprofileModel", related_name="actors", blank=True, null=True)
+    record_date = models.DateField()
+
 
     def __str__(self):
-        return str(self.title)
+        return f"{self.anime.title}-{self.record_date}"
 
     @classmethod
     def _create_fake(self):

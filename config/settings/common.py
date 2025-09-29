@@ -132,7 +132,6 @@ VITE_APP_DIR = os.path.join(BASE_DIR, "resources/static/vite")
 
 LANGUAGES = (
     ("ru", _("Russia")),
-    ("en", _("English")),
     ("uz", _("Uzbek")),
 )
 LOCALE_PATHS = [os.path.join(BASE_DIR, "resources/locale")]
@@ -151,7 +150,7 @@ ALLOWED_HOSTS += env("ALLOWED_HOSTS").split(",")
 CSRF_TRUSTED_ORIGINS = env("CSRF_TRUSTED_ORIGINS").split(",")
 
 
-MODELTRANSLATION_LANGUAGES = ("uz", "ru", "en")
+MODELTRANSLATION_LANGUAGES = ("uz", "ru")
 MODELTRANSLATION_DEFAULT_LANGUAGE = "uz"
 
 

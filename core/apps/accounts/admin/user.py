@@ -13,11 +13,7 @@ class CustomUserAdmin(admin.UserAdmin, ModelAdmin):
     form = UserChangeForm
 
     list_display = (
-        "avatar_tag",
-        "first_name",
-        "last_name",
         "phone",
-        "gender",
         "role",
         "is_active",
         "is_staff",
@@ -26,9 +22,9 @@ class CustomUserAdmin(admin.UserAdmin, ModelAdmin):
     autocomplete_fields = ["groups", "user_permissions"]
 
     fieldsets = (
-        (None, {"fields": ("avatar", "phone")}),
+        (None, {"fields": ("phone", )}),
         (_("Login info"), {"fields": ("username", "password")}),
-        (_("Personal info"), {"fields": ("first_name", "last_name", "email", "gender", "age", "info")}),
+        (_("Personal info"), {"fields": ("first_name", "last_name", "email")}),
         (_("Permissions"), {"fields": ("is_active", "is_staff", "is_superuser", "groups", "user_permissions", "role")}),
         (_("Important dates"), {"fields": ("last_login", "date_joined", "validated_at")}),
     )
@@ -39,10 +35,9 @@ class CustomUserAdmin(admin.UserAdmin, ModelAdmin):
         if obj.avatar:
             return format_html('<img src="{}" style="width:50px; height:50px; object-fit:cover; border-radius:50%;" />', obj.avatar.url)
         return "-"
-    avatar_tag.short_description = "Avatar"
 
     search_fields = ("first_name", "last_name", "phone", "email")
-    list_filter = ("role", "gender", "is_active", "is_staff")
+    list_filter = ("is_active", "is_staff")
 
 
 

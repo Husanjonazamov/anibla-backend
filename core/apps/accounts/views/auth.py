@@ -59,13 +59,7 @@ class RegisterView(BaseViewSetMixin, GenericViewSet, UserService):
         self.create_user(
             phone=phone,
             username=data.get("username"),
-            first_name=data.get("first_name"),
-            last_name=data.get("last_name"),
             tg_id=data.get("tg_id"),
-            age=data.get("age"),
-            gender=data.get("gender"),
-            info=data.get("info"),
-            avatar=data.get("avatar"),
             role=data.get("role"),
             password=data.get("password"),
         )

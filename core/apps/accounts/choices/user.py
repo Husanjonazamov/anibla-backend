@@ -6,9 +6,9 @@ class RoleChoice(models.TextChoices):
     """
     Foydalanuvchi rollari
     """
+    ADMIN = "admin", _("Direktor")    
     MANAGER = "manager", _("Manager")
-    DIRECTOR = "director", _("Director")    
-    PRODUCER = "producer", _("Rejisyor")  
+    DIRECTOR = "director", _("Rejisyor")  
     ACTOR = "actor", _("Aktyor")
 
 

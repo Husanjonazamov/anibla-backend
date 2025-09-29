@@ -23,32 +23,22 @@ class RegisterSerializer(serializers.ModelSerializer):
                 _("Phone number already registered."), code="unique"
             )
         return value
+    
+
 
     class Meta:
         model = get_user_model()
         fields = [
             "phone",
             "username",
-            "first_name",
-            "last_name",
             "tg_id",
-            "age",
-            "gender",
-            "info",
-            "avatar",
             "role",
             "password",
         ]
         extra_kwargs = {
             "phone": {"required": True},
             "username": {"required": True},
-            "first_name": {"required": False, "allow_blank": True},
-            "last_name": {"required": False, "allow_blank": True},
             "tg_id": {"required": False},
-            "age": {"required": False},
-            "gender": {"required": False},
-            "info": {"required": False, "allow_blank": True},
-            "avatar": {"required": False},
             "role": {"required": False},
             "password": {"required": False, "write_only": True, "allow_blank": True},
         }
