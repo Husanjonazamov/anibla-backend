@@ -8,5 +8,7 @@ from core.apps.api.models import CalendareventModel
 class CalendareventAdmin(ModelAdmin):
     list_display = (
         "id",
-        "__str__",
     )
+    
+    autocomplete_fields = ["actors", "director", "anime", ]
+

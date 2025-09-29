@@ -17,6 +17,8 @@ class DirectorAdmin(ModelAdmin):
         "age",
     )
 
+    search_fields = ("user__first_name", ) 
+
 
     def avatar_tag(self, obj):
         if obj.avatar:

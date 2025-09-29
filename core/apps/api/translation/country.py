@@ -5,4 +5,6 @@ from core.apps.api.models import CountryModel
 
 @register(CountryModel)
 class CountryTranslation(TranslationOptions):
-    fields = []
+    fields = [
+        "name"
+    ]

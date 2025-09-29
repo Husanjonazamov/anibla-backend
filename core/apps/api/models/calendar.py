@@ -9,7 +9,6 @@ class CalendareventModel(AbstractBaseModel):
     actors = models.ManyToManyField("accounts.ActorprofileModel", related_name="actors", blank=True, null=True)
     record_date = models.DateField()
 
-
     def __str__(self):
         return f"{self.anime.title}-{self.record_date}"
 
