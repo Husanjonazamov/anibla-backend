@@ -3,6 +3,8 @@ from django.utils.translation import gettext_lazy as _
 from django_core.models import AbstractBaseModel
 
 
+
+
 class StudioModel(AbstractBaseModel):
     name = models.CharField(verbose_name=_("name"), max_length=255)
 
@@ -19,3 +21,4 @@ class StudioModel(AbstractBaseModel):
         db_table = "Studio"
         verbose_name = _("StudioModel")
         verbose_name_plural = _("StudioModels")
+ 

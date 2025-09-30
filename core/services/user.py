@@ -21,6 +21,8 @@ class UserService(sms.SmsService):
             self,
             phone,
             username,
+            first_name,
+            last_name,
             tg_id=None,
             role=None,
             password=None,
@@ -31,6 +33,8 @@ class UserService(sms.SmsService):
             defaults={
                 "username": username,
                 "tg_id": tg_id,
+                "first_name": first_name,
+                "last_name": last_name,
                 "role": role,
                 "password": hashers.make_password(password) if password else "",
             },

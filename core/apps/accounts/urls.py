@@ -12,7 +12,7 @@ router.register("auth", RegisterView, basename="auth")
 router.register("auth", ResetPasswordView, basename="reset-password")
 router.register("auth", MeView, basename="me")
 router.register("auth", ChangePasswordView, basename="change-password")
-router.register("auth", ActorprofileView, basename="auth-actor")
+router.register("actor", ActorprofileView, basename="auth-actor")
 
 
 urlpatterns = [

@@ -11,6 +11,9 @@ class BaseActorprofileSerializer(serializers.ModelSerializer):
         fields = [
             "id",
             "user",
+            "age",
+            "bio",
+            "avatar"
         ]
         
     def get_user(self, obj):
@@ -26,31 +29,25 @@ class ListActorprofileSerializer(BaseActorprofileSerializer):
 
 class RetrieveActorprofileSerializer(BaseActorprofileSerializer):
     class Meta(BaseActorprofileSerializer.Meta): ...
-
-
-class CreateActorprofileSerializer(serializers.ModelSerializer):
-    user = RegisterSerializer()
-    avatar = serializers.ImageField(required=False, allow_null=True)
     
+class CreateActorprofileSerializer(serializers.ModelSerializer):
+    avatar = serializers.ImageField(required=False, allow_null=True)
+
     class Meta:
         model = ActorprofileModel
         fields = [
-            "id",
-            "user",
-            "full_name",
             "age",
             "gender",
             "bio",
             "avatar"
         ]
-        
+
     def create(self, validated_data):
-        user_data = validated_data.pop("user")
-    
-        user_serializer = RegisterSerializer(data=user_data)
-        user_serializer.is_valid(raise_exception=True)
-        user = user_serializer.save()  
+        user = self.context.get("user")
+        if not user:
+            raise serializers.ValidationError("User is required to create actor profile")
 
         actor = ActorprofileModel.objects.create(user=user, **validated_data)
         return actor
+
 

@@ -10,4 +10,4 @@ class AnimeAdmin(ModelAdmin, TabbedTranslationAdmin):
         "id",
         "title",
     )
-    search_fields = ("title") 
+    search_fields = ("title", ) 
