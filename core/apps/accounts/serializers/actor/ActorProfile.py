@@ -13,6 +13,7 @@ class BaseActorprofileSerializer(serializers.ModelSerializer):
             "user",
             "age",
             "bio",
+            "gender",
             "avatar"
         ]
         

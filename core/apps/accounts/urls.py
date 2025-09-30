@@ -4,7 +4,7 @@ Accounts app urls
 
 from django.urls import path, include
 from rest_framework_simplejwt import views as jwt_views
-from .views import RegisterView, ResetPasswordView, MeView, ChangePasswordView, ActorprofileView
+from .views import RegisterView, ResetPasswordView, MeView, ChangePasswordView, ActorprofileView, DirectorView
 from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
@@ -13,6 +13,8 @@ router.register("auth", ResetPasswordView, basename="reset-password")
 router.register("auth", MeView, basename="me")
 router.register("auth", ChangePasswordView, basename="change-password")
 router.register("actor", ActorprofileView, basename="auth-actor")
+router.register("director", DirectorView, basename="auth-director")
+
 
 
 urlpatterns = [
